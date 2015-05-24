@@ -1,0 +1,110 @@
+/* Couleurs :
+ #C2FFBD #7AFF71 #62CC5A #3D7F38 #617F5F 
+
+Nouvelles couleurs :
+#3498db medium
+#DDDDDD back
+#000000 fore
+#FFFFFF fore 2
+#2980b9 dark
+#0F056B
+   */
+body{
+	background-color: #D7D7D7;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 100%;
+}
+header p{
+	text-align: center;
+	font-size: x-large;
+	margin-top: 15px;
+	color : #2980b9;
+}
+header{
+	border-bottom: dashed 3px #2980b9;
+	margin-bottom: 20px;
+}
+aside{
+	position: relative;
+	width: 170px;
+	display: inline-block;
+	float:left;
+	vertical-align: center;
+}
+	aside ul{
+		padding: 0;
+		margin :0;
+	}
+	nav li{
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	nav ul li a{
+		text-align: center;
+		display: block;
+		padding: 10px;
+		background-color: #3498db;
+		color:#FFFFFF;
+		text-decoration: none;
+	}
+	nav ul li a:hover{
+		background-color: #2980b9;
+		text-decoration: underline;
+		width: 180px;
+	}
+	section{
+		display: inline-block;
+		padding-left: 50px;
+		padding-top: 10px;
+		width: 50%;
+		margin-bottom: 10px;
+	}
+	.annie{
+
+		position: relative;
+		z-index: -1;
+		bottom: -100px;
+		right: -5%;
+}
+footer{
+	height: 100px;
+	width: 100%;
+	clear:both;
+	background-color: #2980b9;
+	text-align: center;
+}
+	footer .networks img{
+		margin: 5px;
+	}
+/* MEDIA QUERIES */
+@media screen and (max-width: 980px) {
+  	.annie {
+		display: none;
+	}
+	section {
+		width: 70%;
+	}
+}
+@media screen and (min-width: 1300px){
+	aside{
+		width: 270px;
+	}
+	nav a:hover{
+		width: 300px !important;
+	}
+	section{
+		position: relative;
+		padding-left: 100px;
+		width: 50%;
+	}
+}
+@media screen and (min-width: 1900px){
+	.content{
+		width: 1300px;
+		margin: 0 auto;
+	}
+	footer{
+		width: 100%;
+	}
+}
