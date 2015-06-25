@@ -1,0 +1,65 @@
+Liste des pages :
+
+FR :
+
+index.html
+	<title>Annie Hip-Ki</title>
+
+	<meta name="description" content="Annie Hip-Ki, realisations, projets, compétences et expériences" />
+
+hobbies.html
+	<title>Annie Hip-Ki - Centres d'intérêt</title>
+
+	<meta name="description" content="Annie Hip-Ki, hobbies, centres d'intérêt, passions, activités" />
+
+skills.html
+	<title>Annie Hip-Ki - Compétences</title>
+
+	<meta name="description" content="Annie Hip-Ki, compétences, langues, informatique" />
+
+experience.html
+	<title>Annie Hip-Ki - Expériences professionnelles</title>
+
+	<meta name="description" content="Annie Hip-Ki, expériences professionnelles, stages, jobs, bénévolat" />
+
+portfolio.html
+	<title>Annie Hip-Ki - Portfolio</title>
+
+	<meta name="description" content="Annie Hip-Ki, projets, réalisations, créations, logiciels, sites web" />
+
+formation.html
+	<title>Annie Hip-Ki - Formation</title>
+
+	<meta name="description" content="Annie Hip-Ki, formation, scolarité, diplômes, qualifications" />
+
+EN :
+en/index.html
+	<title>Annie Hip-Ki</title>
+
+	<meta name="description" content="Annie Hip-Ki, realisations, projects, skills and experience" />
+
+
+en/hobbies.html
+	<title>Annie Hip-Ki - Hobbies</title>
+
+	<meta name="description" content="Annie Hip-Ki, hobbies, interests, passions, activities" />
+
+en/skills.html
+	<title>Annie Hip-Ki - Compétences</title>
+
+	<meta name="description" content="Annie Hip-Ki, skills, languages, computing" />
+
+en/experience.html
+	<title>Annie Hip-Ki - Experience</title>
+
+	<meta name="description" content="Annie Hip-Ki, experience, jobs, placements, internships, volunteering" />
+
+en/portfolio.html
+	<title>Annie Hip-Ki - Portfolio</title>
+
+	<meta name="description" content="Annie Hip-Ki, projects, realisations, creations, softwares, websites" />
+
+en/formation.html
+	<title>Annie Hip-Ki - Formation</title>
+
+	<meta name="description" content="Annie Hip-Ki, education, degrees, qualifications" />

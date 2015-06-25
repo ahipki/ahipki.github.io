@@ -1,0 +1,25 @@
+			<div class="category container col-xs-12">
+				<h3 class="col-xs-10 col-md-offset-1"></h3>
+				<div class="item col-xs-10 col-md-offset-1 container" >
+					<div class="item-left col-sm-4">
+						<h4></h4>
+					</div>
+					<div class="item-title col-sm-8">
+						<h4></h4>
+					</div>
+					<div class="item-description col-xs-12">
+						<p></p>
+					</div>
+					<div class="item-plus col-xs-12"><a class="btn btn-sm" role="button">En savoir plus  <span class="glyphicon glyphicon glyphicon-circle-arrow-right"></span></a></div>
+					<div class="item-details-container col-xs-12" >
+						<div class="item-details container col-xs-12">
+							<div class="item-details-head col-xs-12">
+
+							</div>
+							<div class="item-details-content col-xs-12">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
