@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jquery.js"></script>
+		<script src="magic.js"></script>
+		<script src="keypress.js"></script>
+		<link type="text/css" rel="stylesheet" href="style.css" />
+		<meta lang="fr" xml:lang="fr" content="text/html;charset=UTF-8" http-equiv="Content-Type">
+		<title>A Kind Of Magic</title>
+		<!-- Queen - A Kind Of Magic -->
+		<!-- Yodelice - Familiar Fire -->
+
+	</head>
+		
+	<body>
+
+		<audio loop src="./music/familiarFireLoop.mp3" autoplay></audio>
+		<div id="status">
+			<button>Désactiver la musique</button> 
+			<div class="vie">
+				Santé : <span class="valeur">--</span> PV
+			</div>
+			<div class="bonus">
+				Bonus: <span class="valeur">--</span> points
+			</div>
+			<div class="force">
+				Force: <span class="valeur">--</span> points
+			</div>
+
+			<span class="couleur" id="red"></span>
+			<span class="couleur" id="green"></span>
+			<span class="couleur" id="blue"></span>
+			<span class="couleur" id="black"></span>
+		</div>
+
+		<div class="section" id="intro">
+			<h2>À la recherche de l'éternité</h2>
+			L'hiver vous inspire. Il fait si froid dans ce pays que vous avez décidé de vous renforcer. Il faut être fort pour mériter d'être le maître du monde, votre ultime objectif. Vous faites vos prières matinales pour que votre journée soit bonne, que vous trouviez un moyen de devenir maître du monde et une maison de plus de 15m². Vous vous habillez chaudement avant de partir et laissez le poêle s'éteindre tout seul pour que votre cabane en bois soit chaleureuse à votre retour.
+			
+			<button go="choisirVoie">Commencer l'aventure !</button>
+
+		</div>
+	
+		<div id="inventaire">
+			<h3>Inventaire</h3>
+			<ul>
+				<li class="inventaire" id="stylo">Stylo solide</li>
+			</ul>
+		</div>
+		<div class="section" id="choisirVoie">
+			Vous sortez de votre petite cabane au beau milieu d'une immense forêt. Vous découvrez une immense étendue blanche de neige et un vent glacial vous donne quelques frissons. Vous êtes de très bonne humeur et avez une grande motivation. Vous gagnez 10 points de motivation qui vous aideront à communiquer avec les dieux. Vous vous baladez une bonne demi-heure sans avoir pris de petit déjeuner. Qu'avez-vous envie de faire par ce temps enneigé ?
+
+			<button go="bonhomme">Faire un bonhomme de neige</button> 
+			<button go="chasse">Chasser pour trouver de la nourriture</button>
+			<button go="maison">Faire demi-tour pour aller prendre un bon petit-déjeuner</button>
+			<button go="sortie">Sortir de la forêt</button>
+
+		</div>
+	
+		
+		<div class="section perteVie bonus" id="bonhomme">
+			Votre tenacité mérite 10 points de ténacité pour un tel exploit ! Cependant, vous n'êtes pas si satisfait de votre magnifique bonhomme de neige et vous avez encore plus froid et plus faim qu'avant. Vous perdez 10 points de santé. Qu'allez-vous donc faire ?
+
+			<button go="bonhomme"> Un autre bonhomme de neige plus grand et beaucoup plus beau</button>
+			<button go="maison">Rentrer chez vous</button> 
+			<button go="sortie">Sortir de la forêt</button>
+
+		</div>
+	
+		
+		<div class="section perteVie bonus" id="maison">
+			Vous ne trouvez plus le chemin du retour car il est en train de neiger et les arbres ne ressemblent qu'à des poteaux de même taille. Vous marchez donc deux heures dans le froid et perdez 10 points de santé. Vous reconnaissez de mieux en mieux les lieux et voyez au loin que votre cabane semble... PRENDRE FEU ! Apparemment, grâce à vos super capacités d'analyse, vous avez compris que des ours ont cambriolé le peu de choses que vous possédiez et ont accidentellement mis le feu à votre foyer. Vous vous souvenez avoir laissé quelques braises dans le poêle pour réchauffer la cabane pendant votre absence. Comment réagissez-vous ?
+
+			<button go="cabaneBrule">Vous vous empressez d'aller voir si vous pouvez sauver quelques affaires</button>
+			<button go="bonhomme">Vous paniquez et voulez vous éloigner pour déstresser en faisant un bonhomme de neige</button>
+			<button go="sortie">Vous voulez sortir de la forêt pour ne pas vous faire manger par un ours</button>
+
+		</div>
+	
+		
+		<div class="section perteVie bonus" id="cabaneBrule">
+			Quel courage ! Vous gagnez 10 points de courage.
+			Vous réussisez à récupérer un sac. La fumée vous fait tousser, vous avez quelques brulûres douloureuses. Vous perdez 10 points de santé. Vous vous éloignez de la cabane la regardant tristement devenir cendres. À quoi pensez-vous ?
+
+			<button go="sac">Fouiller le sac</button>
+			<button go="sortie">Sortir au plus vite de cette forêt glaciale</button>
+			<button go="sortie">Devenir le maître du monde</button>
+			<button go="sac">Chercher à manger</button>
+
+		</div>
+	
+		
+		<div class="section" id="chasse">
+			Vous vous approchez discrètement d'un ourson très mignon qui a l'air de jouer avec quelque chose. Vous le voyez de dos. Que voulez-vous faire ?
+						
+			<button go="sortie">Cet ours est intimidant, vous voulez sortir de cette forêt même si vous avez faim</button>
+			<button go="ours">Pour être maître du monde il faut du courage. Allons l'abbatre à mains nues !</button>
+			<button go="maison">Vous voulez rentrer chez vous pour manger</button>
+
+		</div>
+		
+		<div class="section perteVie bonus" id="ours">
+			Que vous êtes téméraire ! Vous gagnez 10 points de courage !
+			Vous essayez d'assommer l'ourson en le frappant directement à la tête. Cela n'a pas l'air de marcher : l'ourson se retourne et a peur. Il fuit après vous avoir donné un coup de griffe. Vous perdez 10 points de santé. Il était en train de jouer avec une boule magique que vous décidez de récupérer.
+						
+			<button go="maison">Rentrer à la maison pour enfin manger</button>
+			<button go="boule">Examiner la boule</button>
+			<button go="sortie">Sortir de cette forêt sans manger. Tout vient à point à qui sait attendre. Et on ne sait jamais, cet ourson appelle peut-être du renfort.</button>
+
+		</div>
+
+		<div class="section bonusx2" id="boule">
+			Que vous êtes curieux ! Vous gagnez 10 points de curiosité !
+			Vous scrutez soigneusement la boule et vous décidez de la frotter<span></span>. Elle vous motive et vous gagnez 10 points de motivation.
+
+			<button go="maison">Rentrer à la maison pour enfin manger</button>
+			<button go="boule">Examiner plus longuement la boule</button>
+			<button go="sortie">Sortir de cette forêt sans manger. Tout vient à point à qui sait attendre. Et on ne sait jamais, cet ourson appelle peut-être du renfort.</button>
+
+		</div>
+		<div class="section bonus" id="sac">
+			Vous fouillez le sac pour espérer trouver de la nourriture.
+			Vous gagnez 10 points de curiosité et avez accès à plusieurs items que vous pouvez utiliser dès maintenant si vous le souhaitez. On ne sait jamais sur quoi on peut tomber en sortant de la forêt.
+
+			<button go="sortie">Sortir de la forêt</button>
+
+		</div>
+		
+		
+		<div class="section mur" id="sortie">
+			Vous sortez enfin de la forêt et un mur tombe du ciel atterrissant en douceur devant vous. Vous lisez les inscriptions dessus. Vous n'arrivez à déchiffrer que quelques mots : "manger", "magique", "éternelle".
+			Vous faites le tour du mur et le regardez pendant quelques instants. Vous vous rendez compte que les inscriptions de ce côté du mur sont une énigme. Vous tentez de la déchiffrer. Vous voyez un espace pour écrire la réponse. Il y est clairement inscrit qu'il faut 10 points bonus pour soumettre une reponse. Répondre correctement à l'énigme fait accéder à la vie éternelle. Vos prières ont donc marché. Les dieux vous ont écouté et vous testent pour voir si vous méritez de réaliser votre plus grand rêve.
+						
+			<button go="enigme">Résoudre l'énigme</button>
+
+		</div>
+
+		<div class="section mur" id="enigme">
+			Voici l'énigme.
+			Que veux dire ceci : "A tốt 10 licht xianshi A kaista, pavdekshme 01101001 0110101101101001 01101110011011110110101101101111 0111001001110101" ? <br /> <!--latin vietnmien binaire/sms/francais neerlandais mandarin accordMusiquefreng finnois immortel/albanais survivre/japonais/binaire/separationdesyllabes/ikinokoru -->
+
+			<input type="radio" name="reponse" value="1"/>Un puits de lumière montrant la voie, aucun mortel ne survivra <br />
+
+			<input type="radio" name="reponse" value="2"/>Un rayon de soleil éclaire la vie,
+			cela n'a aucun prix  <br />
+
+			<input type="radio" name="reponse" value="3"/>L'attente semble une éternité,
+			mais le jour finira toujours par se lever  <br />
+
+			<input type="radio" name="reponse" value="4"/>L'éternité est éphémère, sinon elle couterait trop cher  <br />
+
+			<input type="radio" name="reponse" value="5"/>Il ne peut y en avoir qu'un, celui qui y mettra le plus du sien  <br />
+
+			<input type="radio" name="reponse" value="6"/>Un seul être dominera, et ce sera un vrai combat  <br />
+
+			<input type="radio" name="reponse" value="7"/>La flamme au fond de soi permettra de devenir roi  <br />
+
+			<input type="radio" name="reponse" value="8"/>Plus tu as du courage, mieux tu traverseras les âges  <br />
+
+			<input type="radio" name="reponse" value="9"/>Défier les portes du temps permet d'accéder au monde des plus grands  <br />
+
+			<input type="radio" name="reponse" value="10"/>Prier les dieux pour aller mieux  <br />
+
+			<input type="radio" name="reponse" value="11"/>42  <br />
+
+			<input type="radio" name="reponse" value="12"/>Moi  <br />
+
+			<input type="radio" name="reponse" value="13"/>Je ne sais pas  <br />
+
+			<input type="radio" name="reponse" value="14"/>4 8 15 16 23 42  <br />
+
+			<input type="radio" name="reponse" value="15"/>Éternité  <br />
+
+			<input type="radio" name="reponse" value="16"/>Je serai le maître du monde  <br />
+
+			<input type="radio" name="reponse" value="17"/>Je suis la réponse à l'univers  <br />
+
+			<input type="radio" name="reponse" value="18"/>Les dieux sont les maîtres du monde  <br />
+
+			<input type="radio" name="reponse" value="19"/>(Vous dessiner le contour de votre main gauche car vous êtes droitier)  <br />
+
+			<input type="radio" name="reponse" value="20"/>Le soleil nous dominera  <br />
+
+			<input type="radio" name="reponse" value="21"/>Vers l'infini et au-delà  <br />
+
+			<input type="radio" name="reponse" value="22"/>Un seul être vous manque et tout est dépeuplé  <br />
+
+			<input type="radio" name="reponse" value="23"/>Donnez-moi la vie éternelle  <br />
+
+			<input type="radio" name="reponse" value="24"/>Sourire à la vie est le début d'un monde parfait  <br />
+
+			<input type="radio" name="reponse" value="25"/>Que la force soit avec moi  <br />
+			
+			<button id="valider">Valider (-10 points bonus)</button>
+		</div>
+
+		<div class="section" id="fin">
+			Vous n'avez plus de points bonus et n'avez pas réussi à répondre à l'énigme.
+			Vous n'avez pas atteint votre objectif et le mur a disparu. Mais vous n'êtes pas mort !
+			<button go="intro">Rejouer</button>
+
+		</div>
+
+		<div class="section" id="puissanceMagique">
+			Vous n'avez plus de points bonus et n'avez pas réussi à répondre à l'énigme.
+			Vous avez une puissance incroyable et plein de vie. Vous pouvez essayer de conquérir le monde. C'est parti !
+
+			<button go="intro">Rejouer</button>
+		</div>
+		
+		
+		<div class="section" id="mort">
+			Vous venez de perdre vos derniers points de vie. Vous êtes donc faible. Trop faible pour vous relever. Laissez-vous mourir.
+			Vous priez pour obtenir l'aide des dieux dans vos derniers instants.
+
+			<button go="intro">Vous êtes mort. Rejouez</button>
+
+		</div>
+
+		<div class="section" id="eternite">
+			Vous avez répondu correctement à l'énigme !
+			Vous avez une vie illimitée. Vous pourrez donc conquérir le monde plus facilement. C'est parti !
+
+			<a href="http://deepnight.net/"><button id="prime_bonus">Accéder à la prime bonus</button></a>
+
+		</div>
+
+		<!-- ronds de décor -->
+		<div class="deco" id="f1"></div>
+		<div class="deco" id="f2"></div>
+		<div class="deco" id="f3"></div>
+		<div class="deco" id="f4"></div>
+		<div class="deco" id="f5"></div>
+		<div class="deco" id="f6"></div>
+		<div class="deco" id="f7"></div>
+		<div class="deco" id="f8"></div>
+		<div class="deco" id="f9"></div>
+		<div class="deco" id="f0"></div>
+		
+	</body>
+
+</html>
