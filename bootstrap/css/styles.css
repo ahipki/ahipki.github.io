@@ -133,3 +133,62 @@ footer{
 		color: #FFFFFF;
 	}
 /*** END FOOTER ***/
+
+/*** ANIMATIONS ***/
+.title{
+     animation: bounce 0.35s ease 4 alternate;
+}
+
+@keyframes bounce{
+     from {transform: translateY(0);}
+     to   {transform: translateY(-20px);}
+}
+/*** END ANIMATIONS ***/
+
+/*** DECO ***/
+.center{
+	text-align: center;
+}
+.sq{
+	height: 120px;
+	width: 120px;
+	margin: 10px auto;
+}
+[color="red"]{
+	background-color: red;
+}
+[color="#EEEEEE"]{
+	background-color: #EEEEEE;
+}
+[color="orange"]{
+	background-color: orange;
+}
+[color="#2980b9"]{
+	background-color: #2680b9;
+}
+[color="violet"]{
+	background-color: violet;
+}
+[color="#23527C"]{
+	background-color: #23527C;
+}
+[color="purple"]{
+	background-color: purple;
+}
+[color="#FFFFFF"]{
+	background-color: #FFFFFF;
+}
+[color="green"]{
+	background-color: green;
+}
+[color="#000000"]{
+	background-color: #000000;
+}
+[color="blue"]{
+	background-color: blue;
+}
+[color="#3498db"]{
+	background-color: #3498db;
+
+}
+/*** END DECO ***/
