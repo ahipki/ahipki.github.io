@@ -1,0 +1,61 @@
+body{
+	color:black;
+	font-size:12pt;
+    font-family:"Arial"
+}
+p{
+    margin:0;
+}
+table td,table th{
+    padding:0
+}
+table{
+    border-spacing:0;
+    border-collapse:collapse;
+    margin-right:auto
+}
+.entete{
+	border:solid 1pt;
+    padding:5pt 5pt 5pt 5pt;
+    width:269.3pt;
+}
+.titre{
+    font-weight:bold;
+}
+.instru{
+	color:BlueViolet;
+	font-style:italic;
+}
+.tableau{
+	border:solid 1pt;
+    padding:5pt 5pt 5pt 5pt;
+}
+.accords{
+    color:red;
+    font-weight:bold;
+}
+
+/* Section Couleurs */
+.blue{
+	color:CornflowerBlue;
+}
+.green{
+	color:ForestGreen;
+}
+.pink{
+	color:Magenta;
+}
+.orange{
+	color:DarkOrange;
+}
+.darkblue{
+	color:Blue;
+}
+.yellow{
+	color:Gold;
+}
+.purple{
+	color:BlueViolet;
+}
+
+/* Fin Section Couleurs */
