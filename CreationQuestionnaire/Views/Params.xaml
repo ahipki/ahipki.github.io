@@ -9,12 +9,54 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </Page.Resources>
     <Grid>
-        <Button
-            Name="btnBack"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+        <Label
             Grid.Row="0"
-            Click="RetourAccueil_Click"
-            Content="Accueil" />
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Content="Gestion des paramètres"
+            FontSize="24" />
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center">
+            <TextBlock>
+                - Paramétrage des dossiers par défaut : configurations, questions<LineBreak />
+                - todo<LineBreak />
+                - todo</TextBlock>
+        </Label>
+        <Button
+            Name="btn1"
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Bouton 1" />
+        <Button
+            Name="btn2"
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="Bouton 2" />
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" />
     </Grid>
 </Page>

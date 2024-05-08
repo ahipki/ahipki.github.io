@@ -9,12 +9,63 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </Page.Resources>
     <Grid>
-        <Button
-            Name="btnBack"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label
             Grid.Row="0"
-            Click="RetourAccueil_Click"
-            Content="Accueil" />
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Content="Gestion des questionnaires"
+            FontSize="24" />
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center">
+            <TextBlock>
+                - Sont affichés par défaut les paramètres les plus récents<LineBreak />
+                - Le dossier par défaut est "configurations"<LineBreak />
+                - Les pages seront numérotées</TextBlock>
+        </Label>
+        <Button
+            Name="btnChargerConfigQuestionnaire"
+            Grid.Row="1"
+            Grid.Column="0"
+            Click="ChargerConfigurationQuestionnaire_Click"
+            Content="Charger une config de questionnaire" />
+        <Button
+            Name="btnSauvegarderConfigQuestionnaire"
+            Grid.Row="1"
+            Grid.Column="1"
+            Click="SauvegarderConfigurationQuestionnaire_Click"
+            Content="Sauvegarder la configuration actuelle" />
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" />
+        <Button
+            Name="btnGenererQuestionnaire"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Click="GenererQuestionnaire_Click"
+            Content="Générer des questionnaires" />
     </Grid>
 </Page>

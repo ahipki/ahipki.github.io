@@ -9,12 +9,87 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </Page.Resources>
     <Grid>
-        <Button
-            Name="btnBack"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+        <Label
             Grid.Row="0"
-            Click="RetourAccueil_Click"
-            Content="Accueil" />
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Content="Gestion des questions"
+            FontSize="24" />
+        <ScrollViewer
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            HorizontalScrollBarVisibility="Auto"
+            VerticalScrollBarVisibility="Auto">
+            <Label HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock
+                    MaxWidth="700"
+                    PreviewMouseWheel="TextBlock_PreviewMouseWheel"
+                    TextWrapping="Wrap">
+                    - Est affichée par défaut la liste de questions la plus récente<LineBreak />
+                    - Le dossier par défaut est "questions"<LineBreak />
+                    <Run FontWeight="ExtraBold">Explication des colonnes :</Run>
+                    <LineBreak />
+                    <Run FontWeight="Bold">- Question :</Run>
+                    formuler la question<LineBreak />
+                    <Run FontWeight="Bold">- Com :</Run>
+                    commentaire qui s'affichera en italique sous la question<LineBreak />
+                    <Run FontWeight="Bold">- A B C D E F :</Run>
+                    les réponses possibles (si une des colonnes est vide, les réponses possibles seront les réponses non vides précédent la colonne vide)<LineBreak />
+                    <Run FontWeight="Bold">- Ap Bp Cp Dp Ep Fp :</Run>
+                    le nombre de points que rapportent les différentes réponses<LineBreak />
+                    <Run FontWeight="Bold">- NbPts :</Run>
+                    le nombre de points totaux que peut rapporter la question (selon le paramétrage du questionnaire, cela peut s'afficher sur le questionnaire)<LineBreak />
+                    <Run FontWeight="Bold">- Multi :</Run>
+                    indique si plusieurs réponses sont possibles (si O alors une indication (plusieurs réponses possibles) s'affichera)<LineBreak />
+                    <Run FontWeight="Bold">- BonneReponse :</Run>
+                    indiquer la ou les réponse(s) correctes (séparer par le caractère plus "+" s'il faut toutes les réponses ou un slash "/" si l'une ou l'autre est correcte. ex: A+E ou A/E)<LineBreak />
+                    <Run FontWeight="Bold">- Melange :</Run>
+                    Si on souhaite que les réponses ne soient pas mélangées, mettre N, sinon par défaut elles pourront l'être selon le paramétrage du questionnaire<LineBreak />
+                    <Run FontWeight="Bold">- Libre :</Run>
+                    Si 0 alors ce n'est pas une réponse libre et les colonnes A B C D E F seront prises en compte. Sinon, indiquer le nombre de son choix, cela déterminera la taille du cadre dans le questionnaire pour écrire une réponse libre<LineBreak />
+                    <Run FontWeight="Bold">- Chance :</Run>
+                    indiquer le pourcentage de chance que la question se retrouve dans un questionnaire. Si la colonne est vide, cela correspondra à 50%</TextBlock>
+            </Label>
+        </ScrollViewer>
+
+
+        <Button
+            Name="btn1"
+            Grid.Row="1"
+            Grid.Column="0"
+            Content="Bouton 1" />
+        <Button
+            Name="btn2"
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="Bouton 2" />
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="4" />
     </Grid>
 </Page>

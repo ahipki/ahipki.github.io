@@ -22,7 +22,16 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Bienvenue dans le créateur de questionnaires en format PDF" />
+        <Label
+            Grid.Row="0"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center">
+            <TextBlock TextAlignment="Center">
+                <Run FontSize="24" FontWeight="Bold">Création Questionnaire</Run>
+                <LineBreak />
+                <Run FontSize="20">L'application pour créer des questionnaires</Run>
+            </TextBlock>
+        </Label>
         <Button
             Name="btnQuestions"
             Grid.Row="1"
@@ -38,6 +47,13 @@
             Grid.Row="3"
             Click="GererParams_Click"
             Content="Paramétrages divers" />
-        <Label Grid.Row="4" Content="Informations importantes :" />
+        <Label Content="" />
+        <Label Grid.Row="4">
+            <TextBlock TextWrapping="Wrap">
+                <Run FontWeight="ExtraBold">Informations importantes :</Run><LineBreak />
+                - Les listes de questions sont en format CSV donc peuvent être ouverts par un logiciel de tableur comme Excel<LineBreak />
+                <LineBreak />
+            </TextBlock>
+        </Label>
     </Grid>
 </Page>
