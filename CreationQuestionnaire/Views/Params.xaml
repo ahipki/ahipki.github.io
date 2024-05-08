@@ -24,6 +24,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -33,13 +35,16 @@
         <Label
             Grid.Row="0"
             Grid.Column="0"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Content="Gestion des paramètres"
             FontSize="24" />
         <Label
             Grid.Row="0"
-            Grid.Column="1"
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Center">
             <TextBlock>
@@ -48,15 +53,15 @@
                 - todo</TextBlock>
         </Label>
         <Button
-            Name="btn1"
+            Name="btnOuvrirSources"
             Grid.Row="1"
             Grid.Column="0"
-            Content="Bouton 1" />
+            Content="Ouvrir le dossier des sources" />
         <Button
             Name="btn2"
             Grid.Row="1"
             Grid.Column="1"
             Content="Bouton 2" />
-        <DataGrid Grid.Row="2" Grid.ColumnSpan="2" />
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="4" />
     </Grid>
 </Page>
