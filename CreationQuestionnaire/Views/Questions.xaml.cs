@@ -1,5 +1,10 @@
 ﻿using CreationQuestionnaire.Helpers;
 using CreationQuestionnaire.Models;
+using CreationQuestionnaire.Services;
+using CreationQuestionnaire.ViewModels;
+using Microsoft.Win32;
+using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -78,6 +83,104 @@ public partial class Questions : Page
                         MessageBox.Show("La question est obligatoire");
                     }
                 }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Evenement pour afficher le DisplayName du champ
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+    {
+        e.Column.Header = ((PropertyDescriptor)e.PropertyDescriptor).DisplayName;
+    }
+
+    /// <summary>
+    /// Evenement pour vérifier les saisies des colonnes
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void DataGrid_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        DataGridCell cell = sender as DataGridCell;
+        if (cell == null || cell.IsEditing == false)
+            return;
+
+        DataGridColumn column = cell.Column;
+        if (column == null)
+            return;
+
+        string columnName = column.Header.ToString();
+
+        switch (columnName)
+        {
+            case "Ap":
+            case "Bp":
+            case "Cp":
+            case "Dp":
+            case "Ep":
+            case "Fp":
+                // Int ou double négatif ou postiif
+                break;
+            case "BonneReponse":
+                // A B C D E F + /
+                break;
+            case "Points":
+                // Int ou double négatif ou positif
+                break;
+            case "Multi":
+            case "Melange":
+                // O N ou vide
+                break;
+            case "Libre":
+                // vide 0 nombre ou max
+                break;
+            case "Chance":
+                // vide ou int de 0 à 100
+                break;
+            default:
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void SauvegarderQuestions_Click(object sender, RoutedEventArgs e)
+    {
+
+        // Choisir le répertoire de sauvegarde
+        SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+        string questionsDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "questions");
+        if (!Directory.Exists(questionsDirectory))
+        {
+            Directory.CreateDirectory(questionsDirectory);
+        }
+        saveFileDialog.InitialDirectory = questionsDirectory; // Dossier par défaut
+
+        saveFileDialog.Filter = "Fichiers CSV (*.csv)|*.csv";
+        saveFileDialog.FileName = "Questions.csv"; // Nom par défaut du fichier
+
+        // Affichez le dialogue et attendez la réponse de l'utilisateur
+        bool? result = saveFileDialog.ShowDialog();
+        // Vérifiez si l'utilisateur a cliqué sur le bouton "Enregistrer"
+        if (result == true)
+        {
+            QuestionListViewModel viewModel = DataContext as QuestionListViewModel;
+            if (viewModel != null)
+            {
+                var questionList = viewModel.QuestionList;
+
+                // Obtenez le chemin du fichier sélectionné par l'utilisateur
+                string filePath = saveFileDialog.FileName;
+
+                // Appelez votre méthode ExportToCsv avec le chemin du fichier
+                CsvService.ExportToCsv(questionList.ToList(), filePath);
             }
         }
     }

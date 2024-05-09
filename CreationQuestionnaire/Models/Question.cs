@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
 
 namespace CreationQuestionnaire.Models;
 
@@ -7,13 +7,13 @@ public class Question
     /// <summary>
     /// Question, obligatoire
     /// </summary>
-    [Display(Name = "Question")]
+    [DisplayName("Question")]
     public string QuestionText { get; set; }
 
     /// <summary>
     /// Commentaire, facultatif
     /// </summary>
-    [Display(Name = "Com")]
+    [DisplayName("Com")]
     public string? CommentaireText { get; set; }
 
     /// <summary>
@@ -40,20 +40,20 @@ public class Question
     /// <summary>
     /// Nombre de points qu'on peut gagner avec la question
     /// </summary>
-    [Display(Name = "NbPts")]
     public string? Points { get; set; }
 
     /// <summary>
     /// Indique si plusieurs réponses sont possibles : 
     /// si O, alors un texte "plusieurs réponses possibles" s'affichera dans le questionnaire
     /// </summary>
-    [Display(Name = "Multi")]
+    [DisplayName("Multi")]
     public string? MultiReponses { get; set; }
 
     /// <summary>
     /// Indique si on doit mélanger les réponses lors de la génération d'un questionnaire (si l'option est choisie à la génération)
     /// Si N, alors les réponses devront rester dans le même ordre : A puis B puis C...
     /// </summary>
+    [DisplayName("Mélange")]
     public string? Melange { get; set; }
 
     /// <summary>
@@ -71,7 +71,7 @@ public class Question
     /// <summary>
     /// Indique la categorie d'une question (pour potentiellement créer un questionnaire avec des catégories)
     /// </summary>
-    [Display(Name = "Catégorie")]
+    [DisplayName("Catégorie")]
     public string? Categorie { get; set; }
 
     /// <summary>
