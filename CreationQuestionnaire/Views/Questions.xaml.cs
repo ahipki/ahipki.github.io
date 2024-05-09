@@ -1,6 +1,8 @@
 ﻿using CreationQuestionnaire.Helpers;
+using CreationQuestionnaire.Models;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 
 
@@ -46,6 +48,37 @@ public partial class Questions : Page
 
             // Indiquer que l'événement a été manipulé pour éviter que la ScrollViewer ne soit également déclenchée
             e.Handled = true;
+        }
+    }
+
+    private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+    {
+        var quest = (Question)e.Row.Item;
+        var column = e.Column as DataGridBoundColumn;
+        if (column != null)
+        {
+            var bindingPath = (column.Binding as Binding)?.Path.Path;
+            if (bindingPath != null)
+            {
+                var textBox = e.EditingElement as System.Windows.Controls.TextBox;
+                if (textBox != null)
+                {
+                    var property = quest.GetType().GetProperty(bindingPath);
+                    if (property != null)
+                    {
+                        property.SetValue(quest, textBox.Text);
+                    }
+                    if (string.IsNullOrEmpty(textBox.Text))
+                    {
+                        e.Cancel = true;
+                    }
+                    if (string.IsNullOrEmpty(quest.QuestionText))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("La question est obligatoire");
+                    }
+                }
+            }
         }
     }
 }

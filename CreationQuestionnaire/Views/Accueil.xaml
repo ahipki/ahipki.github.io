@@ -52,6 +52,8 @@
             <TextBlock TextWrapping="Wrap">
                 <Run FontWeight="ExtraBold">Informations importantes :</Run><LineBreak />
                 - Les listes de questions sont en format CSV donc peuvent être ouverts par un logiciel de tableur comme Excel<LineBreak />
+                - Evolution possible : charger un questionnaire et y répondre sur l'application et comptabiliser ses points<LineBreak />
+                - Evolution possible : Mode admin vs mode répondant<LineBreak />
                 <LineBreak />
             </TextBlock>
         </Label>
