@@ -25,12 +25,12 @@ public class Question
     public string? D { get; set; }
     public string? E { get; set; }
     public string? F { get; set; }
-    public int? Ap { get; set; }
-    public int? Bp { get; set; }
-    public int? Cp { get; set; }
-    public int? Dp { get; set; }
-    public int? Ep { get; set; }
-    public int? Fp { get; set; }
+    public string? Ap { get; set; }
+    public string? Bp { get; set; }
+    public string? Cp { get; set; }
+    public string? Dp { get; set; }
+    public string? Ep { get; set; }
+    public string? Fp { get; set; }
 
     /// <summary>
     /// Liste des bonnes réponses (exemples : A, A+B, A/B ou rien)
@@ -41,7 +41,7 @@ public class Question
     /// Nombre de points qu'on peut gagner avec la question
     /// </summary>
     [Display(Name = "NbPts")]
-    public int? Points { get; set; }
+    public string? Points { get; set; }
 
     /// <summary>
     /// Indique si plusieurs réponses sont possibles : 
@@ -60,13 +60,13 @@ public class Question
     /// Indique la taille de l'encadré pour une réponse libre
     /// Si 0, alors pas d'encadré, ce n'est pas une question libre et donc on regarde la liste des réponses
     /// </summary>
-    public int? Libre { get; set; }
+    public string? Libre { get; set; }
 
     /// <summary>
     /// Indique le pourcentage de chance qu'on veut donner à la question pour apparaitre dans un questionnaire. 
     /// Si pas de valeur, c'est considéré comme 50% de chance
     /// </summary>
-    public int? Chance { get; set; }
+    public string? Chance { get; set; }
 
     /// <summary>
     /// Indique la categorie d'une question (pour potentiellement créer un questionnaire avec des catégories)

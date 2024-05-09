@@ -18,9 +18,9 @@ namespace CreationQuestionnaire.ViewModels
                     A = "Oui",
                     B = "Non",
                     BonneReponse = "A",
-                    Chance = 100,
+                    Chance = "100",
                     CommentaireText = "ceci est un premier test",
-                    Points = 5,
+                    Points = "5",
                     Melange = "N"
                 },
                 new Question
@@ -33,17 +33,17 @@ namespace CreationQuestionnaire.ViewModels
                     E = "Orange",
                     F = "Noir",
                     BonneReponse = "A+C+D",
-                    Chance = 10,
+                    Chance = "10",
                     CommentaireText = "ceci est un deuxieme test",
-                    Points = 5,
+                    Points = "5",
                     Melange = "O"
                 },
                 new Question
                 {
                     QuestionText = "Qu'est-ce que le bonheur'",
-                    Libre = 10,
-                    CommentaireText = "ceci est un deuxieme test",
-                    Points = 5
+                    Libre = "10",
+                    CommentaireText = "ceci est un troisieme test",
+                    Points = "6"
                 },
             ];
         }

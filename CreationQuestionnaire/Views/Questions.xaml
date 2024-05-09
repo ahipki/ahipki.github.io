@@ -57,6 +57,7 @@
                     TextWrapping="Wrap">
                     - Est affichée par défaut la liste de questions la plus récente<LineBreak />
                     - Le dossier par défaut est "questions"<LineBreak />
+                    - Il n'est pas possible de trier le tableau sur les colonnes comportant des chiffres donc il faut considérer les chiffres en lettres et donc 10 sera avant 2 par exemple<LineBreak />
                     <Run FontWeight="ExtraBold">Explication des colonnes :</Run>
                     <LineBreak />
                     <Run FontWeight="Bold">- Question :</Run>
