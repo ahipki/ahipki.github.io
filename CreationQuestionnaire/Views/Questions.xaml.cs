@@ -18,9 +18,14 @@ namespace CreationQuestionnaire.Views;
 /// </summary>
 public partial class Questions : Page
 {
+    private QuestionListViewModel viewModel;
+
     public Questions()
     {
         InitializeComponent();
+        viewModel = new QuestionListViewModel();
+        viewModel.LoadQuestionsFromRecentCsv();
+        DataContext = viewModel;
     }
     private void RetourAccueil_Click(object sender, RoutedEventArgs e)
     {
@@ -152,7 +157,6 @@ public partial class Questions : Page
     /// <param name="e"></param>
     private void SauvegarderQuestions_Click(object sender, RoutedEventArgs e)
     {
-
         // Choisir le répertoire de sauvegarde
         SaveFileDialog saveFileDialog = new SaveFileDialog();
 
@@ -164,7 +168,7 @@ public partial class Questions : Page
         saveFileDialog.InitialDirectory = questionsDirectory; // Dossier par défaut
 
         saveFileDialog.Filter = "Fichiers CSV (*.csv)|*.csv";
-        saveFileDialog.FileName = "Questions.csv"; // Nom par défaut du fichier
+        saveFileDialog.FileName = Path.GetFileName(viewModel.LoadedFileName);
 
         // Affichez le dialogue et attendez la réponse de l'utilisateur
         bool? result = saveFileDialog.ShowDialog();
@@ -181,6 +185,9 @@ public partial class Questions : Page
 
                 // Appelez votre méthode ExportToCsv avec le chemin du fichier
                 CsvService.ExportToCsv(questionList.ToList(), filePath);
+                viewModel.LoadedFileName = filePath;
+
+                MessageBox.Show("Les questions ont été enregistrées avec succès.", "Enregistrement réussi", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }

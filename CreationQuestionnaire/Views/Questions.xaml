@@ -34,6 +34,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="4*" />
+            <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
         <Label
             Grid.Row="0"
@@ -58,6 +59,7 @@
                     - Est affichée par défaut la liste de questions la plus récente<LineBreak />
                     - Le dossier par défaut est "questions"<LineBreak />
                     - Il n'est pas possible de trier le tableau sur les colonnes comportant des chiffres donc il faut considérer les chiffres en lettres et donc 10 sera avant 2 par exemple<LineBreak />
+                    - S'il y a une ligne blanche dans le tableau c'est que les questions sont bien "pré-sauvegardées" et qu'on peut ajouter une nouvelle question<LineBreak />
                     <Run FontWeight="ExtraBold">Explication des colonnes :</Run>
                     <LineBreak />
                     <Run FontWeight="Bold">- Question :</Run>
@@ -106,5 +108,9 @@
             AutoGeneratingColumn="OnAutoGeneratingColumn"
             CellEditEnding="dataGrid_CellEditEnding"
             ItemsSource="{Binding QuestionList}" />
+        <Label
+            Grid.Row="3"
+            Grid.ColumnSpan="4"
+            Content="{Binding LoadedFileName}" />
     </Grid>
 </Page>

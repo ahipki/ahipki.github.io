@@ -1,4 +1,8 @@
-﻿using CreationQuestionnaire.Models;
+﻿using CreationQuestionnaire.Helpers;
+using CreationQuestionnaire.Models;
+using CsvHelper;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Text;
 
@@ -14,7 +18,7 @@ public class CsvService
         StringBuilder csvContent = new StringBuilder();
 
         // Créez l'en-tête CSV en incluant les noms des champs
-        csvContent.AppendLine("Question, Commentaire, A, B, C, D, E, F, Ap, Bp, Cp, Dp, Ep, Fp, BonneReponse, Points, Multi, Melange, Libre, Chance, Categorie, NotePerso");
+        csvContent.AppendLine("Question,Commentaire,A,B,C,D,E,F,Ap,Bp,Cp,Dp,Ep,Fp,BonneReponse,Points,Multi,Melange,Libre,Chance,Categorie,NotePerso");
 
         foreach (Question question in questionList)
         {
@@ -43,10 +47,52 @@ public class CsvService
             string notePersoField = FormatCsvField(question.NotePerso);
 
             // Ajoutez les champs à la ligne CSV
-            csvContent.AppendLine($"{questionField}, {commentaireField}, {aField}, {bField}, {cField}, {dField}, {eField}, {fField}, {apField}, {bpField}, {cpField}, {dpField}, {epField}, {fpField}, {bonneReponseField}, {pointsField}, {multiField}, {melangeField}, {libreField}, {chanceField}, {categorieField}, {notePersoField}");
+            csvContent.AppendLine($"{questionField},{commentaireField},{aField},{bField},{cField},{dField},{eField},{fField},{apField},{bpField},{cpField},{dpField},{epField},{fpField},{bonneReponseField},{pointsField},{multiField},{melangeField},{libreField},{chanceField},{categorieField},{notePersoField}");
         }
 
         File.WriteAllText(filePath, csvContent.ToString());
+    }
+
+    public static string FindMostRecentCsvFile()
+    {
+        string questionsDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "questions");
+
+        if (Directory.Exists(questionsDirectory))
+        {
+            string[] csvFiles = Directory.GetFiles(questionsDirectory, "*.csv");
+
+            Array.Sort(csvFiles, (a, b) => new FileInfo(b).LastWriteTime.CompareTo(new FileInfo(a).LastWriteTime));
+
+            return csvFiles.Length > 0 ? csvFiles[0] : null;
+        }
+
+        return null;
+    }
+
+    // Méthode pour charger les questions à partir d'un fichier CSV
+    public static ObservableCollection<Question> LoadQuestionsFromCsv(string csvFilePath)
+    {
+        ObservableCollection<Question> questions = new ObservableCollection<Question>();
+
+        // Vérifiez si le fichier CSV existe
+        if (File.Exists(csvFilePath))
+        {
+            using (var reader = new StreamReader(csvFilePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                // Utilisez la classe de mapping QuestionMap avec CsvReader
+                csv.Context.RegisterClassMap<QuestionMap>();
+
+                // Lecture des enregistrements CSV et ajout à la liste des questions
+                while (csv.Read())
+                {
+                    Question question = csv.GetRecord<Question>();
+                    questions.Add(question);
+                }
+            }
+        }
+
+        return questions;
     }
 
     // Méthode pour formater une valeur de champ CSV
