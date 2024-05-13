@@ -3,6 +3,7 @@ using CreationQuestionnaire.Models;
 using CreationQuestionnaire.Services;
 using CreationQuestionnaire.ViewModels;
 using Microsoft.Win32;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
@@ -151,7 +152,23 @@ public partial class Questions : Page
     }
 
     /// <summary>
-    /// 
+    /// dossier par défaut
+    /// </summary>
+    /// <returns></returns>
+    private string DossierParDefaut()
+    {
+        string dossierParDefaut = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "questions");
+
+        if (!Directory.Exists(dossierParDefaut))
+        {
+            Directory.CreateDirectory(dossierParDefaut);
+        }
+
+        return dossierParDefaut;
+    }
+
+    /// <summary>
+    /// Sauvegarde de la liste des questions affichée au clic sur Sauvegarder une liste de questions
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -160,12 +177,7 @@ public partial class Questions : Page
         // Choisir le répertoire de sauvegarde
         SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-        string questionsDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "questions");
-        if (!Directory.Exists(questionsDirectory))
-        {
-            Directory.CreateDirectory(questionsDirectory);
-        }
-        saveFileDialog.InitialDirectory = questionsDirectory; // Dossier par défaut
+        saveFileDialog.InitialDirectory = DossierParDefaut(); // Dossier par défaut
 
         saveFileDialog.Filter = "Fichiers CSV (*.csv)|*.csv";
         saveFileDialog.FileName = Path.GetFileName(viewModel.LoadedFileName);
@@ -189,6 +201,32 @@ public partial class Questions : Page
 
                 MessageBox.Show("Les questions ont été enregistrées avec succès.", "Enregistrement réussi", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+    }
+
+    /// <summary>
+    /// Charge un fichier CSV au clic sur le bouton "Charger une liste de questions"
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ChargerQuestions_Click(object sender, RoutedEventArgs e)
+    {
+        QuestionListViewModel viewModel = DataContext as QuestionListViewModel;
+
+        // Ouvrir une boîte de dialogue pour sélectionner le fichier CSV
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = "Fichiers CSV (*.csv)|*.csv";
+        openFileDialog.InitialDirectory = DossierParDefaut(); // Dossier par défaut
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            viewModel.LoadedFileName = openFileDialog.FileName;
+
+            // Une fois que vous avez trouvé le chemin du fichier CSV le plus récent, chargez les données
+            ObservableCollection<Question> loadedQuestions = CsvService.LoadQuestionsFromCsv(openFileDialog.FileName);
+
+            // Mettez à jour la propriété QuestionList avec les données chargées
+            viewModel.QuestionList = loadedQuestions;
         }
     }
 }

@@ -95,6 +95,7 @@
             Name="btnChargerQuestions"
             Grid.Row="1"
             Grid.Column="0"
+            Click="ChargerQuestions_Click"
             Content="Charger une liste de questions" />
         <Button
             Name="btnSauvegarderQuestions"

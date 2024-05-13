@@ -11,7 +11,14 @@ public class QuestionListViewModel : DependencyObject, INotifyPropertyChanged
     public static readonly DependencyProperty LoadedFileNameProperty =
     DependencyProperty.Register("LoadedFileName", typeof(string), typeof(QuestionListViewModel), new PropertyMetadata(null));
 
-    public ObservableCollection<Question>? QuestionList { get; set; }
+    public static readonly DependencyProperty QuestionListProperty =
+        DependencyProperty.Register("QuestionList", typeof(ObservableCollection<Question>), typeof(QuestionListViewModel), new PropertyMetadata(null));
+
+    public ObservableCollection<Question> QuestionList
+    {
+        get { return (ObservableCollection<Question>)GetValue(QuestionListProperty); }
+        set { SetValue(QuestionListProperty, value); }
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
