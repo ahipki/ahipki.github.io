@@ -20,6 +20,7 @@ namespace CreationQuestionnaire.Views;
 public partial class Questions : Page
 {
     private QuestionListViewModel viewModel;
+    private readonly HashSet<string> multilineColumns = new HashSet<string> { "QuestionText", "CommentaireText", "A", "B", "C", "D", "E", "F", "NotePerso" };
 
     public Questions()
     {
@@ -62,6 +63,11 @@ public partial class Questions : Page
         }
     }
 
+    /// <summary>
+    /// Evenement lors de l'édition d'une cellule
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private void dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
     {
         var quest = (Question)e.Row.Item;
@@ -101,6 +107,35 @@ public partial class Questions : Page
     private void OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
     {
         e.Column.Header = ((PropertyDescriptor)e.PropertyDescriptor).DisplayName;
+
+        if (multilineColumns.Contains(e.PropertyName))
+        {
+            var textColumn = new DataGridTemplateColumn
+            {
+                Header = e.Column.Header,
+                SortMemberPath = e.PropertyName
+            };
+
+            // Define CellTemplate
+            var cellTemplate = new DataTemplate();
+            var textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
+            textBlockFactory.SetBinding(TextBlock.TextProperty, new Binding(e.PropertyName));
+            textBlockFactory.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
+            cellTemplate.VisualTree = textBlockFactory;
+            textColumn.CellTemplate = cellTemplate;
+
+            // Define CellEditingTemplate
+            var cellEditingTemplate = new DataTemplate();
+            var textBoxFactory = new FrameworkElementFactory(typeof(TextBox));
+            textBoxFactory.SetBinding(TextBox.TextProperty, new Binding(e.PropertyName) { UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged });
+            textBoxFactory.SetValue(TextBox.TextWrappingProperty, TextWrapping.Wrap);
+            textBoxFactory.SetValue(TextBox.AcceptsReturnProperty, true);
+            textBoxFactory.SetValue(TextBox.VerticalScrollBarVisibilityProperty, ScrollBarVisibility.Auto);
+            cellEditingTemplate.VisualTree = textBoxFactory;
+            textColumn.CellEditingTemplate = cellEditingTemplate;
+
+            e.Column = textColumn;
+        }
     }
 
     /// <summary>
@@ -148,6 +183,25 @@ public partial class Questions : Page
                 break;
             default:
                 break;
+        }
+    }
+
+    /// <summary>
+    /// Evenement pour éviter qu'on retourne sur la page précédente quand on efface trop le contenu d'une case
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+    {
+        // Vérifie si la touche appuyée est Retour arrière (Backspace)
+        if (e.Key == Key.Back)
+        {
+            // Vérifie si le focus est actuellement sur un TextBox
+            if (!(Keyboard.FocusedElement is TextBox textBox))
+            {
+                // Empêche le comportement par défaut de la touche Retour arrière
+                e.Handled = true;
+            }
         }
     }
 
