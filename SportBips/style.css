@@ -1,0 +1,65 @@
+/* Style pour les titres des menus */
+h3 {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #333;
+}
+
+/* Style pour les tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table tr {
+    background-color: #f9f9f9;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* Style pour rendre le tableau responsive */
+table {
+    display: block;
+    overflow-x: auto;
+}
+
+table td {
+    min-width: 100px;
+}
+
+/* Style pour la zone de compte à rebours */
+#countdown {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    color: #ff5722;
+}
+
+/* Style pour l'exercice actuel */
+#current-exercise {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #007bff;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Style global pour une meilleure lecture */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}

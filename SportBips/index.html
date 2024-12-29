@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programme de Sport</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Programme de Sport</h1>
+
+        <!-- Section de sélection -->
+        <div class="selection">
+            <label for="menu-count">Nombre de menus :</label>
+            <select id="menu-count">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+
+            <label for="exercise-count">Nombre d'exercices :</label>
+            <input type="number" id="exercise-count" min="1" placeholder="Ex : 16">
+
+            <button id="generate-program">Générer le programme</button>
+        </div>
+
+        <!-- Affichage du programme -->
+        <div id="program-display">
+            <h2>Programme généré</h2>
+            <ul id="program-list"></ul>
+        </div>
+
+        <!-- Chronomètre -->
+        <div id="timer">
+            <p id="current-exercise">Préparez-vous...</p>
+            <p id="countdown">00:00</p>
+            <button id="start-program">Démarrer le programme</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
