@@ -139,14 +139,32 @@ public partial class Questions : Page
     }
 
     /// <summary>
+    /// Gere les evenements pour vérification de contenu
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void DataGrid_PreparingCellForEdit(object sender, DataGridPreparingCellForEditEventArgs e)
+    {
+        TextBox textBox = e.EditingElement as TextBox;
+        if (textBox != null)
+        {
+            textBox.TextChanged += TextBox_TextChanged;
+        }
+    }
+
+    /// <summary>
     /// Evenement pour vérifier les saisies des colonnes
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void DataGrid_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-        DataGridCell cell = sender as DataGridCell;
-        if (cell == null || cell.IsEditing == false)
+        TextBox textBox = sender as TextBox;
+        if (textBox == null)
+            return;
+
+        DataGridCell cell = Helper.FindVisualParent<DataGridCell>(textBox);
+        if (cell == null)
             return;
 
         DataGridColumn column = cell.Column;
@@ -154,6 +172,10 @@ public partial class Questions : Page
             return;
 
         string columnName = column.Header.ToString();
+        string input = textBox.Text;
+        string previousText = Helper.GetPreviousText(textBox);
+
+        //TODO https://chatgpt.com/c/0d0298c5-7e71-46fd-a3cd-34732747c243
 
         switch (columnName)
         {
@@ -163,23 +185,49 @@ public partial class Questions : Page
             case "Dp":
             case "Ep":
             case "Fp":
-                // Int ou double négatif ou postiif
+                // Int ou double négatif ou positif
+                if (!ValidationQuestionnaire.IsValidNumber(input))
+                {
+                    textBox.Text = previousText;
+                    MessageBox.Show("Les colonnese Ap Bp Cp Dp Ep Fp n'acceptent que les nombres");
+                }
                 break;
             case "BonneReponse":
                 // A B C D E F + /
+                if (!ValidationQuestionnaire.IsValidBonneReponse(input))
+                {
+                    textBox.Text = previousText;
+                }
                 break;
             case "Points":
                 // Int ou double négatif ou positif
+                if (!ValidationQuestionnaire.IsValidNumber(input))
+                {
+                    textBox.Text = previousText;
+                }
                 break;
             case "Multi":
             case "Melange":
                 // O N ou vide
+                if (!ValidationQuestionnaire.IsValidON(input))
+                {
+                    textBox.Text = previousText;
+                }
                 break;
             case "Libre":
                 // vide 0 nombre ou max
+                if (!ValidationQuestionnaire.IsValidLibre(input))
+                {
+                    textBox.Text = previousText;
+                }
                 break;
             case "Chance":
                 // vide ou int de 0 à 100
+                if (!ValidationQuestionnaire.IsValidChance(textBox.Text))
+                {
+                    textBox.Text = previousText;
+                    MessageBox.Show("Seuls les nombres de 0 à 100 sont acceptés.");
+                }
                 break;
             default:
                 break;
