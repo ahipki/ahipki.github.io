@@ -9,23 +9,27 @@
 <body>
     <div class="container">
         <h1>Programme de Sport</h1>
-
+		<div class="subtitle"><span>15 secondes de pause après un exercice.</span>&nbsp;<span>30 secondes de pause après un programme.</span></div>
+		
         <!-- Section de sélection -->
         <div class="selection">
-            <label for="menu-count">Nombre de menus :</label>
-            <select id="menu-count">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-
-            <label for="exercise-count">Nombre d'exercices :</label>
-            <input type="number" id="exercise-count" min="1" placeholder="Ex : 16">
-
-            <button id="generate-program">Générer le programme</button>
+			<div id="menus">
+				<label for="menu-count">Nombre de menus</label>
+				<select id="menu-count">
+					<option value="" selected></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</div>
+			<div id="exercises">
+				<label for="exercise-count">Nombre d'exercices</label>
+				<input type="number" id="exercise-count" min="1" max="100">
+			</div>
+				<button id="generate-program">Générer le programme</button>
         </div>
 
         <!-- Affichage du programme -->
@@ -40,8 +44,25 @@
             <p id="countdown">00:00</p>
             <button id="start-program">Démarrer le programme</button>
         </div>
+		
+		<!-- Details -->
+		<details>
+			<summary>Voir la liste des menus</summary>
+			blabla
+		</details>
+		<details>
+			<summary>Voir la liste des exercices</summary>
+			blabla
+		</details>
     </div>
+	
 
-    <script src="script.js"></script>
+    <!-- Import des fichiers JS -->
+    <script src="bdd.js"></script>
+    <script src="feedbdd.js"></script>
+    <script src="infrastructure.js"></script>
+    <script src="service.js"></script>
+    <script src="ui.js"></script>    
+	<script src="controller.js"></script>
 </body>
 </html>

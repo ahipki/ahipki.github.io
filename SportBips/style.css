@@ -1,3 +1,78 @@
+/* Titres */
+.subtitle{
+	font-size: 1em;
+	font-style : italic;
+	margin-top : -25px;
+	margin-bottom : 25px;
+	display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 400px) {
+    h1 {
+		font-size: 1.5em;
+	}
+	.subtitle{
+		font-size: 0.8em;
+	}
+	.subtitle span {
+        display: block; /* Assure que chaque phrase soit sur une nouvelle ligne */
+    }
+}
+
+/* Choix des menus */
+.selection {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux éléments de se replier si nécessaire */
+    gap: 20px;
+}
+
+@media (max-width: 400px) {
+    .selection {
+        flex-direction: column; /* Met les éléments l'un sous l'autre */
+    }
+}
+
+.selection label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block; /* Pour que le titre soit bien positionné au-dessus */
+}
+
+#menu-count, #exercise-count {
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    background-color: #fff; 
+}
+#exercise-count {
+	border: 1px solid #ccc; 
+    border-radius: 5px; 
+    background-color: #fff; 
+	color:black;
+}
+#generate-program{
+	border: none; 
+	background-color: rgb(0, 111, 255); 
+    border-radius: 25px; 
+	color:white;
+	align-self: flex-end;
+}
+#menu-count, #exercise-count, #generate-program {
+	height: 40px;
+    font-size: 1em;
+    padding: 10px;
+	box-sizing: border-box; 
+    transition: border-color 0.3s ease; 
+	width: 200px;
+    cursor: pointer;
+}
+#menus, #exercises, #generate-program{
+	flex: 1; /* Prend la même largeur pour chaque colonne */
+    min-width: 200px; 
+	max-width: 200px; 
+}
+
+
 /* Style pour les titres des menus */
 h3 {
     margin-top: 20px;
