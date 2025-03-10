@@ -1,10 +1,12 @@
 // bdd.js : Gestion de la base de données
 
-function openDatabase() {
+let db;
+
+function openDatabase(callback) {
     const request = indexedDB.open("Workout", 1);
 
     request.onupgradeneeded = function(event) {
-        const db = event.target.result;
+        db = event.target.result;
         createCategoryTable(db);
         createExerciseTable(db);
         createMenuTable(db);
@@ -12,13 +14,17 @@ function openDatabase() {
     };
 
     request.onsuccess = function(event) {
-        const db = event.target.result;
+        db = event.target.result;
         console.log("Base de données ouverte avec succès !");
+
         // Alimenter les tables après ouverture
         feedCategoryTable(db);
         feedExerciseTable(db);
         feedMenuTable(db);
         feedMenu_exerciseTable(db);
+
+        // Exécuter le callback si fourni
+        if (callback) callback(db);
     };
 
     request.onerror = function(event) {
@@ -26,5 +32,6 @@ function openDatabase() {
     };
 }
 
-// Appel de la fonction pour ouvrir la base de données
-openDatabase();
+
+// // Appel de la fonction pour ouvrir la base de données
+// openDatabase();
