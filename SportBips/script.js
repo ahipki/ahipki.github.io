@@ -6,18 +6,21 @@ const currentExercise = document.getElementById('current-exercise');
 const countdown = document.getElementById('countdown');
 const startProgramButton = document.getElementById('start-program');
 
-// TODO Compléter avec les vrais menus
-const menus = [
-    { name: 'Menu 1', exercises: ['Jumping Jacks', 'Superman', 'Squats', 'Push-up', 'Gainage Bassin', 'Bird Dog'], favorite: false },
-    { name: 'Menu 2', exercises: ['High Knees', 'Reverse Angels', 'Lunges', 'Bicycle Crunches', 'Side Plank Walk', 'Bridge' ], favorite: false },
-    { name: 'Menu 3', exercises: ['Burpees', 'Wall Slides', 'Chaise', 'Abdos relevés de jambes', 'Plank Alternate', 'Bear walk'], favorite: false },
-    { name: 'Menu 4', exercises: ['Superman', 'Lungees Reverence', 'Push-up', 'Crunches', '180 Plank Reach', 'Bridge'], favorite: false },
-    { name: 'Menu 5', exercises: ['Jumping Jacks', 'Alt Swing Back', 'Squats', 'Pike Push-up', 'Full Hollow Body Hold', 'Mountain Climbers'], favorite: false },
-    { name: 'Menu 6', exercises: ['Handstand Push-ups', 'Pistol Squats', 'Muscle-ups', 'Plank to Push-up', 'Bear Crawl', 'Broad Jumps'], favorite: false },
-    { name: 'Menu Poids', exercises: ['Poids', 'Poids', 'Poids', 'Poids', 'Poids', 'Poids'], favorite: true },
-    { name: 'Menu Gainage', exercises: ['Gainage', 'Gainage', 'Gainage', 'Gainage', 'Gainage', 'Gainage'], favorite: true },
-    { name: 'Menu Etirement', exercises: ['Etirement', 'Etirement', 'Etirement', 'Etirement', 'Etirement', 'Etirement'], favorite: true }, 
-];
+// menus 
+function getMenus(db, callback) {
+    const transaction = db.transaction("menu", "readonly");
+    const menuStore = transaction.objectStore("menu");
+    const request = menuStore.getAll();
+
+    request.onsuccess = function() {
+        callback(request.result);
+    };
+
+    request.onerror = function(event) {
+        console.error("Erreur lors de la récupération des menus:", event.target.error);
+    };
+}
+
 
 // TODO Bug : On n'a pas la possibilité de choisir entre choix par menu 1 à 6 menus, choix par exercices 1 à 100, choix par temps : 5 à 30min
 generateProgramButton.addEventListener('click', () => {

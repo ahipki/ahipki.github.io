@@ -1,30 +1,34 @@
 // bdd.js : Gestion de la base de données
 
-let db;
+let dbInstance = null;
 
 function openDatabase(callback) {
+	if (dbInstance) {
+        callback(dbInstance);
+        return;
+    }
     const request = indexedDB.open("Workout", 1);
 
     request.onupgradeneeded = function(event) {
-        db = event.target.result;
-        createCategoryTable(db);
-        createExerciseTable(db);
-        createMenuTable(db);
-        createMenu_exerciseTable(db);
+        dbInstance  = event.target.result;
+        createCategoryTable(dbInstance );
+        createExerciseTable(dbInstance );
+        createMenuTable(dbInstance );
+        createMenu_exerciseTable(dbInstance );
     };
 
     request.onsuccess = function(event) {
-        db = event.target.result;
+        dbInstance  = event.target.result;
         console.log("Base de données ouverte avec succès !");
 
         // Alimenter les tables après ouverture
-        feedCategoryTable(db);
-        feedExerciseTable(db);
-        feedMenuTable(db);
-        feedMenu_exerciseTable(db);
+        feedCategoryTable(dbInstance );
+        feedExerciseTable(dbInstance );
+        feedMenuTable(dbInstance );
+        feedMenu_exerciseTable(dbInstance );
 
         // Exécuter le callback si fourni
-        if (callback) callback(db);
+        if (callback) callback(dbInstance );
     };
 
     request.onerror = function(event) {
